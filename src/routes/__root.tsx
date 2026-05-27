@@ -9,11 +9,11 @@ export const Route = createRootRoute({
         name: 'viewport',
         content: 'width=device-width, initial-scale=1',
       },
-      { title: 'Yashu Reddy — Software Engineer' },
+      { title: 'Yaswanth Reddy Jonnalagadda — Network & Security Engineer' },
       {
         name: 'description',
         content:
-          'Software engineer specializing in building exceptional digital experiences — design systems, accessibility, and high-performance interfaces.',
+          'Senior Network & Security Engineer specializing in hybrid cloud infrastructure, zero-trust security, and network automation across AWS, Azure, and enterprise environments.',
       },
     ],
     links: [

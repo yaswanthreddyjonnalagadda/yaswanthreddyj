@@ -1,15 +1,14 @@
 ---
-school: University of Washington
-summary: B.S. Computer Science — Human-Computer Interaction track
-startDate: "2016"
-endDate: "2020"
+school: Eastern Illinois University
+summary: M.S. in Computer Technology
+startDate: "2021"
+endDate: "2022"
 tags:
   [
-    "HCI",
-    "Algorithms",
-    "Distributed Systems",
-    "Compilers",
+    "Network Security",
+    "Cloud Computing",
+    "Systems Architecture",
   ]
 ---
 
-Focused on the intersection of systems programming and human-computer interaction. Senior thesis explored perceptual thresholds for animation timing in interfaces, published in CHI 2021 proceedings.
+Graduate study in computer technology with focus on enterprise networking, cloud infrastructure, and system design.

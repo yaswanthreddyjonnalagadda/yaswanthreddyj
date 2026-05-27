@@ -1,22 +1,26 @@
 ---
-jobTitle: Senior Frontend Engineer
-company: Meridian Labs
+jobTitle: Network & Security Engineer
+company: Capital One
 location: Remote
-startDate: "2022"
-endDate: "Present"
-summary: "Lead engineer for the company's core design system, building reusable component libraries consumed by six product teams. Reduced UI inconsistencies by 74% across three flagship products and cut average feature delivery time from 11 days to 4 days through systematic component standardization."
+startDate: "2025"
+summary: "Architected VXLAN/EVPN overlay fabric across Cisco Nexus 9000 and Arista switches, consolidating 12 disparate VLAN architectures into a unified multi-tenant infrastructure — achieving 40% network capacity scaling. Drove firewall policy lifecycle automation for 200+ Palo Alto and Fortinet appliances via Terraform and Ansible, reducing deployment time from 4 hours to 15 minutes (94% reduction)."
 tags:
   [
-    "TypeScript",
-    "React",
-    "Storybook",
-    "Radix UI",
-    "Figma",
-    "Vite",
-    "Turborepo",
+    "VXLAN",
+    "EVPN",
+    "Cisco Nexus",
+    "Arista",
+    "Terraform",
+    "Ansible",
+    "Palo Alto",
+    "AWS GuardDuty",
+    "Python",
+    "GitHub Actions",
   ]
 ---
 
-- Architected and shipped a zero-dependency token system connecting Figma design tokens to production CSS variables, eliminating the persistent design–engineering drift that had plagued three product teams.
-- Built a headless component library of 47 primitives with full ARIA compliance and 98% Lighthouse accessibility scores, adopted by six teams within two months of release.
-- Introduced visual regression testing with Chromatic, reducing production UI regressions by 89% over six months.
+- Architected and deployed VXLAN/EVPN overlay fabric across Cisco Nexus 9000 and Arista switches, consolidating 12 disparate VLAN architectures into single unified multi-tenant infrastructure — achieved 40% network capacity scaling.
+- Drove firewall policy lifecycle automation for 200+ Palo Alto and Fortinet appliances via Terraform and Ansible — reduced deployment time from 4 hours to 15 minutes (94% reduction).
+- Engineered AWS GuardDuty and Security Hub threat detection across 15 AWS accounts — triaged 30-50 findings monthly, reduced false positives 70%, and automated remediation via Lambda.
+- Launched CI/CD infrastructure validation pipeline using GitHub Actions and Terraform with Checkov policy enforcement — blocked 95% of non-compliant deployments pre-merge, maintained 99.99% uptime.
+- Developed Python-driven compliance automation using Netmiko and NAPALM across 500+ network devices — identified 300+ quarterly configuration discrepancies, reduced change-related incidents 40%.
