@@ -57,16 +57,16 @@ function Resume() {
 
           <div className="flex items-center gap-3">
             <a
-              href="/resume.pdf"
-              download="Yashu_Reddy_Resume.pdf"
+              href="/Yaswanth_Reddy_J_Networking_Resume.pdf"
+              download="Yaswanth_Reddy_J_Networking_Resume.pdf"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-600/50 text-slate-400 text-xs font-medium hover:bg-slate-700/30 hover:border-slate-500 hover:text-slate-200 transition-all duration-200"
             >
               <Download size={13} aria-hidden="true" />
               PDF
             </a>
             <a
-              href="/resume.docx"
-              download="Yashu_Reddy_Resume.docx"
+              href="/Yaswanth_Reddy_J_Networking_Resume.docx"
+              download="Yaswanth_Reddy_J_Networking_Resume.docx"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal-500/40 text-teal-400 text-xs font-medium hover:bg-teal-500/10 hover:border-teal-400 transition-all duration-200"
             >
               <FileText size={13} aria-hidden="true" />
