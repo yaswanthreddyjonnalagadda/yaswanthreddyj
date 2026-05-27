@@ -95,12 +95,12 @@ function Resume() {
                 yaswanthreddyj08@gmail.com
               </a>
               <span className="opacity-30">·</span>
-              <a href="https://linkedin.com/in/yaswanthreddyj" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors">
-                linkedin.com/in/yaswanthreddyj
+              <a href="https://www.linkedin.com/in/yaswanthreddyj" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors">
+                www.linkedin.com/in/yaswanthreddyj
               </a>
               <span className="opacity-30">·</span>
-              <a href="https://github.com/Yashu1308" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors">
-                github.com/Yashu1308
+              <a href="https://github.com/yaswanthreddyjonnalagadda" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors">
+                github.com/yaswanthreddyjonnalagadda
               </a>
             </div>
           </div>

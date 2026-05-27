@@ -120,7 +120,7 @@ function Sidebar({ activeSection }: { activeSection: string }) {
           <ul className="flex items-center gap-4">
             <li>
               <a
-                href="https://github.com/Yashu1308"
+                href="https://github.com/yaswanthreddyjonnalagadda"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -131,7 +131,7 @@ function Sidebar({ activeSection }: { activeSection: string }) {
             </li>
             <li>
               <a
-                href="https://linkedin.com/in/yaswanthreddyj"
+                href="https://www.linkedin.com/in/yaswanthreddyj"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
