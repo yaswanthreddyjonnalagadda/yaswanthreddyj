@@ -9,7 +9,7 @@ export const Route = createRootRoute({
         name: 'viewport',
         content: 'width=device-width, initial-scale=1',
       },
-      { title: 'Elara Voss — Software Engineer' },
+      { title: 'Yashu Reddy — Software Engineer' },
       {
         name: 'description',
         content:
@@ -38,7 +38,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="bg-[#0b0f1a] text-slate-300 antialiased">
+      <body className="bg-[#0a192f] text-slate-300 antialiased">
         {children}
         <Scripts />
       </body>

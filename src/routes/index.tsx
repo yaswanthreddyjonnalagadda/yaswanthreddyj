@@ -1,174 +1,161 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { allJobs, allProjects } from 'content-collections'
-import { ArrowUpRight, Github, Linkedin, Mail, ExternalLink } from 'lucide-react'
+import { ArrowUpRight, Github, Linkedin, ExternalLink } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 export const Route = createFileRoute('/')({
   component: Portfolio,
 })
 
-// ─── Data sorted by start date descending ───────────────────────────────────
 const sortedJobs = [...allJobs].sort(
   (a, b) => parseInt(b.startDate) - parseInt(a.startDate),
 )
 
 const featuredProjects = [...allProjects].slice(0, 3)
 
-// ─── Small reusable pieces ───────────────────────────────────────────────────
+const NAV_ITEMS = [
+  { id: 'about', label: 'about' },
+  { id: 'experience', label: 'experience' },
+  { id: 'projects', label: 'projects' },
+]
 
 function TechTag({ label }: { label: string }) {
   return (
-    <span
-      className="
-        inline-flex items-center px-3 py-1 rounded-full text-[11px] font-medium
-        tracking-wide uppercase
-        bg-teal-950/40 text-teal-300 border border-teal-800/30
-        transition-colors duration-200 hover:bg-teal-900/40
-      "
-    >
+    <span className="inline-flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 ring-1 ring-inset ring-teal-400/20">
       {label}
     </span>
   )
 }
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function MobileSectionHeader({ title }: { title: string }) {
   return (
-    <div className="flex items-center gap-4 mb-10">
-      <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-teal-400">
-        {children}
-      </span>
-      <div className="flex-1 h-px bg-slate-800" />
+    <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-[#0a192f]/90 px-6 py-5 backdrop-blur lg:sr-only">
+      <h2 className="text-sm font-bold uppercase tracking-widest text-slate-200">
+        {title}
+      </h2>
     </div>
   )
 }
 
-function NavDot({
-  href,
-  label,
-}: {
-  href: string
-  label: string
-}) {
+function Sidebar({ activeSection }: { activeSection: string }) {
   return (
-    <a
-      href={href}
-      className="
-        text-xs font-medium tracking-widest uppercase text-slate-500
-        hover:text-slate-200 transition-colors duration-200
-      "
-    >
-      {label}
-    </a>
-  )
-}
-
-// ─── Sections ────────────────────────────────────────────────────────────────
-
-function HeroSection() {
-  return (
-    <section className="pt-24 pb-20 md:pt-32 md:pb-28">
-      <div className="animate-fade-up">
-        <p className="text-teal-400 text-sm font-medium tracking-[0.15em] uppercase mb-5">
-          Available for new opportunities
-        </p>
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-100 leading-[1.05] mb-5">
-          Elara Voss
+    <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
+      <div>
+        <h1 className="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
+          Yashu Reddy
         </h1>
-        <h2 className="text-xl md:text-2xl font-light text-slate-400 mb-7 tracking-tight">
-          Software Engineer &mdash; Design Systems &amp; Interfaces
+        <h2 className="mt-3 text-lg font-medium tracking-tight text-slate-200">
+          Software Engineer
         </h2>
-        <p className="max-w-lg text-slate-400 leading-relaxed text-base mb-10">
-          I build the invisible infrastructure that makes great products feel
-          inevitable &mdash; design systems, component libraries, and
-          high-performance interfaces that scale.
+        <p className="mt-4 max-w-xs leading-normal text-slate-400">
+          I build accessible, pixel-perfect experiences for the web.
         </p>
-        <div className="flex items-center gap-6">
-          <a
-            href="#contact"
-            className="
-              inline-flex items-center gap-2 px-5 py-2.5 rounded-full
-              border border-teal-500/50 text-teal-400 text-sm font-medium
-              hover:bg-teal-500/10 hover:border-teal-400
-              transition-all duration-200
-            "
-          >
-            Get in touch
-          </a>
-          <a
-            href="#projects"
-            className="
-              text-slate-400 text-sm font-medium hover:text-slate-200
-              transition-colors duration-200 flex items-center gap-1.5
-            "
-          >
-            View work
-            <ArrowUpRight size={14} className="opacity-60" />
-          </a>
-        </div>
+
+        <nav className="nav mt-16 hidden lg:block" aria-label="On-page">
+          <ul className="space-y-4">
+            {NAV_ITEMS.map(({ id, label }) => {
+              const isActive = activeSection === id
+              return (
+                <li key={id}>
+                  <a href={`#${id}`} className="group flex items-center gap-4">
+                    <span
+                      className={`block h-px transition-all duration-300 ${
+                        isActive
+                          ? 'w-16 bg-slate-200'
+                          : 'w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-400'
+                      }`}
+                    />
+                    <span
+                      className={`text-xs font-bold tracking-widest uppercase transition-colors duration-300 ${
+                        isActive
+                          ? 'text-slate-200'
+                          : 'text-slate-500 group-hover:text-slate-400'
+                      }`}
+                    >
+                      {label}
+                    </span>
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
       </div>
-    </section>
+
+      <ul className="mt-8 flex items-center gap-5 lg:mt-0">
+        <li>
+          <a
+            href="https://github.com/Yashu1308"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="block text-slate-400 hover:text-slate-200 transition-colors"
+          >
+            <Github size={20} aria-hidden="true" />
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://linkedin.com/in/yaswanthreddyj"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="block text-slate-400 hover:text-slate-200 transition-colors"
+          >
+            <Linkedin size={20} aria-hidden="true" />
+          </a>
+        </li>
+        <li>
+          <a
+            href="mailto:yaswanthreddyj08@gmail.com"
+            aria-label="Email"
+            className="block text-slate-400 hover:text-slate-200 transition-colors"
+          >
+            <ExternalLink size={20} aria-hidden="true" />
+          </a>
+        </li>
+      </ul>
+    </header>
   )
 }
 
 function AboutSection() {
   return (
-    <section id="about" className="py-20 scroll-mt-20 animate-fade-up animation-delay-100">
-      <SectionLabel>About</SectionLabel>
-      <div className="grid md:grid-cols-[1fr_200px] gap-12 items-start">
-        <div className="space-y-5 text-slate-400 leading-relaxed text-[15px]">
-          <p>
-            I&rsquo;m a frontend engineer with six years of experience at the
-            intersection of{' '}
-            <span className="text-slate-200 font-medium">design systems</span>,{' '}
-            <span className="text-slate-200 font-medium">
-              accessibility engineering
-            </span>
-            , and{' '}
-            <span className="text-slate-200 font-medium">
-              high-performance UI
-            </span>
-            . I thrive in the unglamorous work of making complex things simple
-            and making fast things faster.
-          </p>
-          <p>
-            Most recently at{' '}
-            <span className="text-teal-400 font-medium">Meridian Labs</span>, I
-            led a design-system overhaul that unified six product teams under a
-            single component library, cutting cross-product visual
-            inconsistencies by 74% and halving the average time to ship a new
-            feature. Before that, at{' '}
-            <span className="text-teal-400 font-medium">Helix Systems</span>, I
-            built the real-time visualization layer for an infrastructure
-            monitoring product serving thousands of enterprise clients.
-          </p>
-          <p>
-            Outside of work, I contribute to open-source tooling (my{' '}
-            <a
-              href="https://github.com/elara-voss/vessel"
-              className="text-slate-300 underline underline-offset-4 decoration-slate-600 hover:decoration-teal-400 hover:text-teal-300 transition-colors duration-150"
-            >
-              Vessel CLI
-            </a>{' '}
-            is used by three funded startups), write about{' '}
-            <span className="text-slate-200">interface performance</span>, and
-            occasionally speak at local meetups on component architecture.
-          </p>
-        </div>
-        <div className="hidden md:block">
-          <div className="relative inline-block">
-            <img
-              src="/headshot-on-white.jpg"
-              alt="Elara Voss"
-              className="
-                w-48 h-56 object-cover rounded-xl
-                grayscale opacity-80
-                ring-1 ring-slate-700/60
-                transition-all duration-500
-                hover:grayscale-0 hover:opacity-100
-              "
-            />
-            <div className="absolute inset-0 rounded-xl ring-1 ring-teal-400/20 pointer-events-none" />
-          </div>
-        </div>
+    <section id="about" className="mb-16 scroll-mt-16 lg:mb-36 lg:scroll-mt-24">
+      <MobileSectionHeader title="About" />
+      <div className="space-y-4 text-slate-400">
+        <p>
+          I&rsquo;m a frontend engineer with an expertise in building accessible,
+          pixel-perfect user interfaces. I take pride in crafting thoughtful, inclusive
+          products and have a sharp eye for the little details that elevate user
+          experience. I do my best work at the intersection of design and engineering,
+          where great UX meets clean, scalable code.
+        </p>
+        <p>
+          Currently, I&rsquo;m on the component library team at{' '}
+          <a
+            href="#"
+            className="font-medium text-slate-200 hover:text-teal-300 transition-colors"
+          >
+            Meridian Labs
+          </a>
+          , where I maintain and evolve the company&rsquo;s design system. I lead
+          engineering efforts across components, tooling, and patterns, partnering
+          closely with designers and engineers to ensure accessibility is built into the
+          foundation of our products.
+        </p>
+        <p>
+          Previously, I&rsquo;ve worked across a wide range of environments &mdash; from
+          product studios to startups &mdash; including{' '}
+          <a
+            href="#"
+            className="font-medium text-slate-200 hover:text-teal-300 transition-colors"
+          >
+            Helix Systems
+          </a>
+          . Outside of my day-to-day work, I&rsquo;m passionate about building products
+          that are both well-crafted and widely usable.
+        </p>
       </div>
     </section>
   )
@@ -176,66 +163,62 @@ function AboutSection() {
 
 function ExperienceSection() {
   return (
-    <section id="experience" className="py-20 scroll-mt-20 animate-fade-up animation-delay-200">
-      <SectionLabel>Experience</SectionLabel>
-      <div className="space-y-0">
-        {sortedJobs.map((job, i) => (
-          <article
-            key={job.company}
-            className="
-              group relative flex flex-col md:flex-row gap-5 md:gap-8
-              py-8 border-t border-slate-800/60 first:border-t-0
-              hover:bg-slate-800/20
-              transition-colors duration-300 rounded-xl
-              px-4 -mx-4
-            "
+    <section id="experience" className="mb-16 scroll-mt-16 lg:mb-36 lg:scroll-mt-24">
+      <MobileSectionHeader title="Experience" />
+      <div>
+        <ol className="group/list space-y-12">
+          {sortedJobs.map((job) => (
+            <li key={job.company} className="group relative">
+              <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition-all lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg" />
+              <div className="relative z-10 flex flex-col gap-3 sm:flex-row sm:gap-8">
+                <header className="z-10 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:w-32 sm:shrink-0 sm:text-right">
+                  {job.startDate} &mdash; {job.endDate ?? 'Present'}
+                </header>
+                <div className="flex-1">
+                  <h3 className="font-medium leading-snug text-slate-200">
+                    <a
+                      href="#"
+                      className="group/link inline-flex items-baseline gap-1 text-base font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300"
+                    >
+                      <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block" />
+                      {job.jobTitle}{' '}
+                      <span className="inline-block text-slate-400">·</span>{' '}
+                      {job.company}
+                      <ArrowUpRight
+                        size={14}
+                        className="ml-1 inline-block shrink-0 translate-y-px transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  </h3>
+                  <p className="mt-2 text-sm leading-normal text-slate-400">
+                    {job.summary}
+                  </p>
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {job.tags.map((tag) => (
+                      <li key={tag}>
+                        <TechTag label={tag} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-12">
+          <a
+            href="/resume"
+            className="inline-flex items-center gap-2 font-medium text-slate-200 hover:text-teal-300 transition-colors group"
           >
-            {/* Date column */}
-            <div className="md:w-[120px] shrink-0">
-              <span className="text-xs font-medium text-slate-500 tracking-widest uppercase tabular-nums">
-                {job.startDate} — {job.endDate ?? 'Present'}
-              </span>
-            </div>
-
-            {/* Content column */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-start justify-between gap-4 mb-2">
-                <h3 className="text-slate-200 font-semibold text-base leading-snug group-hover:text-teal-300 transition-colors duration-200">
-                  {job.jobTitle}{' '}
-                  <span className="text-slate-500 font-normal">·</span>{' '}
-                  <span className="text-slate-400 font-normal">
-                    {job.company}
-                  </span>
-                </h3>
-                <span className="shrink-0 text-xs text-slate-600 mt-0.5 hidden sm:block">
-                  {job.location}
-                </span>
-              </div>
-              <p className="text-slate-400 text-sm leading-relaxed mb-4">
-                {job.summary}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {job.tags.map((tag) => (
-                  <TechTag key={tag} label={tag} />
-                ))}
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <div className="mt-8 pl-4 md:pl-[152px]">
-        <a
-          href="/resume"
-          className="
-            inline-flex items-center gap-2
-            text-sm font-medium text-slate-400
-            hover:text-teal-300 transition-colors duration-200
-          "
-        >
-          View full résumé
-          <ArrowUpRight size={14} />
-        </a>
+            View Full Résumé
+            <ArrowUpRight
+              size={16}
+              className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"
+              aria-hidden="true"
+            />
+          </a>
+        </div>
       </div>
     </section>
   )
@@ -243,229 +226,106 @@ function ExperienceSection() {
 
 function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 scroll-mt-20 animate-fade-up animation-delay-300">
-      <SectionLabel>Projects</SectionLabel>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <section id="projects" className="scroll-mt-16 lg:scroll-mt-24">
+      <MobileSectionHeader title="Projects" />
+      <ol className="group/list space-y-12">
         {featuredProjects.map((project) => (
-          <article
-            key={project._meta.path}
-            className="
-              group relative flex flex-col
-              bg-slate-900/50 border border-slate-800/60 rounded-2xl p-6
-              hover:-translate-y-1 hover:border-slate-700/80 hover:bg-slate-900/80
-              hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]
-              transition-all duration-300
-            "
-          >
-            {/* Top row */}
-            <div className="flex items-start justify-between mb-5">
-              <div className="p-2.5 rounded-lg bg-slate-800/60 border border-slate-700/40">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  className="w-5 h-5 text-teal-400"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
-                  />
-                </svg>
-              </div>
-              <div className="flex items-center gap-3">
-                {project.github && (
+          <li key={project._meta.path} className="group relative">
+            <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition-all lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg" />
+            <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:gap-6">
+              <div className="flex-1">
+                <h3 className="font-medium leading-snug text-slate-200">
                   <a
-                    href={project.github}
+                    href={project.liveUrl ?? project.github ?? '#'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="GitHub repository"
-                    className="text-slate-500 hover:text-slate-300 transition-colors duration-150"
+                    className="group/link inline-flex items-baseline gap-1 text-base font-medium leading-tight text-slate-200 hover:text-teal-300"
                   >
-                    <Github size={16} />
+                    {project.title}
+                    <ArrowUpRight
+                      size={14}
+                      className="ml-1 inline-block shrink-0 translate-y-px transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1"
+                      aria-hidden="true"
+                    />
                   </a>
-                )}
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Live site"
-                    className="text-slate-500 hover:text-slate-300 transition-colors duration-150"
-                  >
-                    <ExternalLink size={16} />
-                  </a>
-                )}
+                </h3>
+                <p className="mt-2 text-sm leading-normal text-slate-400">
+                  {project.description}
+                </p>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <li key={tag}>
+                      <TechTag label={tag} />
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-
-            {/* Title */}
-            <h3 className="text-slate-200 font-semibold text-base leading-snug mb-2 group-hover:text-teal-300 transition-colors duration-200">
-              {project.title}
-            </h3>
-
-            {/* Description */}
-            <p className="text-slate-500 text-sm leading-relaxed mb-5 flex-1">
-              {project.description}
-            </p>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5">
-              {project.tags.map((tag) => (
-                <TechTag key={tag} label={tag} />
-              ))}
-            </div>
-          </article>
+          </li>
         ))}
-      </div>
-
-      <div className="mt-8">
+      </ol>
+      <div className="mt-12">
         <a
           href="/projects"
-          className="
-            inline-flex items-center gap-2
-            text-sm font-medium text-slate-400
-            hover:text-teal-300 transition-colors duration-200
-          "
+          className="inline-flex items-center gap-2 font-medium text-slate-200 hover:text-teal-300 transition-colors group"
         >
-          See all projects
-          <ArrowUpRight size={14} />
+          View All Projects
+          <ArrowUpRight
+            size={16}
+            className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"
+            aria-hidden="true"
+          />
         </a>
       </div>
     </section>
   )
 }
-
-function ContactSection() {
-  return (
-    <section id="contact" className="py-20 border-t border-slate-800/60 scroll-mt-20 animate-fade-up animation-delay-400">
-      <div className="max-w-lg">
-        <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-teal-400 mb-4">
-          Get in touch
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-100 mb-5 leading-tight">
-          Let&rsquo;s build something worth building.
-        </h2>
-        <p className="text-slate-400 leading-relaxed mb-8 text-[15px]">
-          Currently open to senior engineering and staff-level roles focused on
-          design systems, component architecture, or frontend infrastructure.
-          Always happy to talk interfaces, tooling, or craft.
-        </p>
-        <a
-          href="mailto:elara@example.com"
-          className="
-            inline-flex items-center gap-2.5 px-6 py-3 rounded-full
-            border border-teal-500/50 text-teal-400 font-medium text-sm
-            hover:bg-teal-500/10 hover:border-teal-400
-            transition-all duration-200
-          "
-        >
-          <Mail size={15} />
-          elara@example.com
-        </a>
-      </div>
-    </section>
-  )
-}
-
-function Header() {
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="max-w-3xl mx-auto px-6 md:px-12">
-        <nav className="
-          flex items-center justify-between
-          py-4 border-b border-slate-800/40
-          backdrop-blur-sm bg-[#0b0f1a]/80
-        ">
-          <a
-            href="/"
-            className="text-slate-400 text-sm font-medium hover:text-slate-200 transition-colors duration-200 tracking-tight"
-          >
-            EV
-          </a>
-          <div className="flex items-center gap-6">
-            <NavDot href="#about" label="About" />
-            <NavDot href="#experience" label="Experience" />
-            <NavDot href="#projects" label="Projects" />
-            <NavDot href="#contact" label="Contact" />
-          </div>
-          <div className="flex items-center gap-4">
-            <a
-              href="https://github.com/elara-voss"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="text-slate-500 hover:text-slate-300 transition-colors duration-150"
-            >
-              <Github size={17} />
-            </a>
-            <a
-              href="https://linkedin.com/in/elara-voss"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="text-slate-500 hover:text-slate-300 transition-colors duration-150"
-            >
-              <Linkedin size={17} />
-            </a>
-          </div>
-        </nav>
-      </div>
-    </header>
-  )
-}
-
-function Footer() {
-  return (
-    <footer className="py-12 border-t border-slate-800/40">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <p className="text-slate-600 text-xs tracking-wide">
-          Designed &amp; built by Elara Voss
-        </p>
-        <div className="flex items-center gap-6">
-          <a
-            href="https://github.com/elara-voss"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate-600 text-xs hover:text-slate-400 transition-colors duration-150"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://linkedin.com/in/elara-voss"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate-600 text-xs hover:text-slate-400 transition-colors duration-150"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="/resume"
-            className="text-slate-600 text-xs hover:text-slate-400 transition-colors duration-150"
-          >
-            Résumé
-          </a>
-        </div>
-      </div>
-    </footer>
-  )
-}
-
-// ─── Page ────────────────────────────────────────────────────────────────────
 
 function Portfolio() {
+  const [activeSection, setActiveSection] = useState('about')
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setCursorPos({ x: e.clientX, y: e.clientY })
+    }
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = []
+    NAV_ITEMS.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id)
+        },
+        { rootMargin: '-40% 0px -55% 0px' },
+      )
+      observer.observe(el)
+      observers.push(observer)
+    })
+    return () => observers.forEach((o) => o.disconnect())
+  }, [])
+
   return (
-    <>
-      <Header />
-      <main className="max-w-3xl mx-auto px-6 md:px-12">
-        <HeroSection />
-        <AboutSection />
-        <ExperienceSection />
-        <ProjectsSection />
-        <ContactSection />
-        <Footer />
-      </main>
-    </>
+    <div className="relative min-h-screen" style={{ background: '#0a192f' }}>
+      <div
+        className="pointer-events-none fixed inset-0 z-30 transition duration-300"
+        style={{
+          background: `radial-gradient(600px circle at ${cursorPos.x}px ${cursorPos.y}px, rgba(29,78,216,0.12), transparent 80%)`,
+        }}
+      />
+      <div className="mx-auto max-w-screen-xl px-6 md:px-12 lg:flex lg:gap-4 lg:px-24">
+        <Sidebar activeSection={activeSection} />
+        <main className="pt-24 pb-24 lg:w-[52%] lg:py-24">
+          <AboutSection />
+          <ExperienceSection />
+          <ProjectsSection />
+        </main>
+      </div>
+    </div>
   )
 }
