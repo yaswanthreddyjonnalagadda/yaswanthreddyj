@@ -187,9 +187,9 @@ function Sidebar({ activeSection }: { activeSection: string }) {
             href="/resume"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-slate-600/50 text-slate-400 text-sm font-medium hover:bg-slate-700/30 hover:border-slate-500 hover:text-slate-200 transition-all duration-200"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-teal-500/50 text-teal-400 text-sm font-medium hover:bg-teal-500/10 hover:border-teal-400 transition-all duration-200"
           >
-            View Résumé
+            View or Download Résumé
           </a>
           <a
             href="/contact"
