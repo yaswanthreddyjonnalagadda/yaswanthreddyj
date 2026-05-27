@@ -51,6 +51,14 @@ function Sidebar({ activeSection }: { activeSection: string }) {
           I build accessible, pixel-perfect experiences for the web.
         </p>
 
+        <div className="mt-8">
+          <img
+            src="/headshot-on-white.jpg"
+            alt="Yashu Reddy"
+            className="w-20 h-20 rounded-full object-cover object-top ring-2 ring-slate-700/60"
+          />
+        </div>
+
         <nav className="nav mt-16 hidden lg:block" aria-label="On-page">
           <ul className="space-y-4">
             {NAV_ITEMS.map(({ id, label }) => {
