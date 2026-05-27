@@ -23,27 +23,35 @@ const sortedBlogs = [...allBlogs]
 const SKILLS = [
   {
     category: 'Cloud Platforms',
-    skills: ['AWS VPC', 'Transit Gateway', 'Direct Connect', 'GuardDuty', 'Security Hub', 'Azure VNet', 'ExpressRoute', 'VPN Gateway'],
+    skills: ['AWS VPC', 'Transit Gateway', 'Direct Connect', 'GuardDuty', 'Security Hub', 'WAF', 'Azure VNet', 'ExpressRoute', 'Azure Firewall', 'Landing Zone', 'GCP VPC'],
   },
   {
     category: 'Network Core',
-    skills: ['BGP', 'OSPF', 'EIGRP', 'VRF', 'VXLAN', 'EVPN', 'STP', 'RSTP', 'EtherChannel', 'Cisco Nexus', 'Arista', 'Juniper Junos'],
+    skills: ['BGP', 'OSPF', 'EIGRP', 'MPLS', 'VRF', 'VXLAN/EVPN', 'STP/RSTP', 'vPC/MLAG', 'PIM Multicast', 'Cisco Nexus', 'Arista EOS', 'Juniper Junos'],
   },
   {
     category: 'Security & Firewalls',
-    skills: ['Zero Trust Architecture', 'Palo Alto Panorama', 'Fortinet FortiGate', 'Cisco Firepower', 'IPsec VPN', 'AWS IAM', 'Network Segmentation'],
+    skills: ['Zero Trust', 'Palo Alto Panorama', 'Fortinet FortiGate', 'Cisco Firepower', 'Check Point', 'ZTNA', 'SASE', 'Microsegmentation', 'IDS/IPS', 'SSL/TLS Decryption'],
+  },
+  {
+    category: 'Identity & VPN',
+    skills: ['Cisco ISE', 'Forescout', '802.1X', 'RADIUS', 'TACACS+', 'IPsec VPN', 'DMVPN', 'AnyConnect', 'GlobalProtect', 'Zscaler ZIA/ZPA'],
   },
   {
     category: 'Automation & IaC',
-    skills: ['Terraform', 'Ansible', 'Python', 'Netmiko', 'NAPALM', 'Bash', 'REST API', 'GitHub Actions', 'Jenkins', 'Policy-as-Code'],
+    skills: ['Terraform', 'Ansible', 'Python (Netmiko/NAPALM)', 'Bash', 'PowerShell', 'GitHub Actions', 'Jenkins', 'GitLab CI', 'Azure DevOps'],
   },
   {
-    category: 'WAN & SD-WAN',
-    skills: ['Cisco Viptela', 'Fortinet SD-WAN', 'Site-to-Site VPN', 'Failover Architecture', 'Multi-path Optimization'],
+    category: 'Load Balancing',
+    skills: ['F5 BIG-IP (LTM/GTM/GSLB)', 'AVI/NSX ALB', 'AWS ALB/NLB', 'Azure App Gateway'],
+  },
+  {
+    category: 'SD-WAN',
+    skills: ['Cisco Viptela', 'Fortinet SD-WAN', 'QoS/DSCP', 'Multi-path Optimization'],
   },
   {
     category: 'Observability',
-    skills: ['Wireshark', 'SolarWinds', 'Prometheus', 'Grafana', 'Splunk', 'Real-time Telemetry'],
+    skills: ['SolarWinds', 'Splunk', 'Wireshark', 'Prometheus', 'Grafana', 'Datadog', 'NetFlow/sFlow', 'Streaming Telemetry', 'Infoblox DDI'],
   },
 ]
 
@@ -99,7 +107,7 @@ function MobileSectionHeader({ title }: { title: string }) {
 
 function Sidebar({ activeSection }: { activeSection: string }) {
   return (
-    <header className="lg:sticky lg:top-0 lg:relative lg:h-screen lg:w-[48%] lg:overflow-hidden lg:pt-10 lg:pb-10">
+    <header className="lg:sticky lg:top-0 lg:h-screen lg:w-[48%] lg:overflow-hidden lg:pt-10 lg:pb-10">
       <div>
         <h1 className="text-2xl font-bold tracking-tight text-slate-200 sm:text-3xl lg:text-3xl">
           Yaswanth Reddy Jonnalagadda
@@ -119,33 +127,17 @@ function Sidebar({ activeSection }: { activeSection: string }) {
           />
           <ul className="flex items-center gap-4">
             <li>
-              <a
-                href="https://github.com/yaswanthreddyjonnalagadda"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-                className="block text-slate-400 hover:text-slate-200 transition-colors"
-              >
+              <a href="https://github.com/yaswanthreddyjonnalagadda" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="block text-slate-400 hover:text-slate-200 transition-colors">
                 <Github size={20} aria-hidden="true" />
               </a>
             </li>
             <li>
-              <a
-                href="https://www.linkedin.com/in/yaswanthreddyj"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="block text-slate-400 hover:text-slate-200 transition-colors"
-              >
+              <a href="https://www.linkedin.com/in/yaswanthreddyj" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="block text-slate-400 hover:text-slate-200 transition-colors">
                 <Linkedin size={20} aria-hidden="true" />
               </a>
             </li>
             <li>
-              <a
-                href="mailto:yaswanthreddyj08@gmail.com"
-                aria-label="Email"
-                className="block text-slate-400 hover:text-slate-200 transition-colors"
-              >
+              <a href="mailto:yaswanthreddyj08@gmail.com" aria-label="Email" className="block text-slate-400 hover:text-slate-200 transition-colors">
                 <ExternalLink size={20} aria-hidden="true" />
               </a>
             </li>
@@ -159,20 +151,8 @@ function Sidebar({ activeSection }: { activeSection: string }) {
               return (
                 <li key={id}>
                   <a href={`#${id}`} className="group flex items-center gap-4">
-                    <span
-                      className={`block h-px transition-all duration-300 ${
-                        isActive
-                          ? 'w-16 bg-slate-200'
-                          : 'w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-400'
-                      }`}
-                    />
-                    <span
-                      className={`text-xs font-bold tracking-widest uppercase transition-colors duration-300 ${
-                        isActive
-                          ? 'text-slate-200'
-                          : 'text-slate-500 group-hover:text-slate-400'
-                      }`}
-                    >
+                    <span className={`block h-px transition-all duration-300 ${isActive ? 'w-16 bg-slate-200' : 'w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-400'}`} />
+                    <span className={`text-xs font-bold tracking-widest uppercase transition-colors duration-300 ${isActive ? 'text-slate-200' : 'text-slate-500 group-hover:text-slate-400'}`}>
                       {label}
                     </span>
                   </a>
@@ -182,26 +162,15 @@ function Sidebar({ activeSection }: { activeSection: string }) {
           </ul>
         </nav>
 
-        <div className="mt-7 hidden lg:flex lg:flex-col lg:gap-2">
-          <a
-            href="/resume"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-teal-500/50 text-teal-400 text-sm font-medium hover:bg-teal-500/10 hover:border-teal-400 transition-all duration-200"
-          >
+        <div className="mt-7 hidden lg:flex lg:flex-col lg:items-start lg:gap-2">
+          <a href="/resume" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-teal-500/50 text-teal-400 text-sm font-medium hover:bg-teal-500/10 hover:border-teal-400 transition-all duration-200 whitespace-nowrap">
             View or Download Résumé
           </a>
-          <a
-            href="/contact"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-teal-500/50 text-teal-400 text-sm font-medium hover:bg-teal-500/10 hover:border-teal-400 transition-all duration-200"
-          >
+          <a href="/contact" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-teal-500/50 text-teal-400 text-sm font-medium hover:bg-teal-500/10 hover:border-teal-400 transition-all duration-200 whitespace-nowrap">
             Contact Me
           </a>
         </div>
       </div>
-
     </header>
   )
 }
@@ -212,28 +181,27 @@ function AboutSection() {
       <SectionHeader title="About" />
       <div className="space-y-4 text-slate-400">
         <p>
-          Cloud-first Senior Network Engineer who architected and deployed hybrid cloud
-          infrastructure serving{' '}
-          <span className="text-slate-200 font-medium">500+ network devices</span> across
-          AWS, Azure, and on-premises environments — delivering{' '}
-          <span className="text-slate-200 font-medium">$280K annual savings</span>, 40%
-          capacity scaling, and 99.99% uptime.
+          Senior Network &amp; Security Engineer with{' '}
+          <span className="text-slate-200 font-medium">6+ years</span> architecting,
+          securing, and automating enterprise infrastructure across{' '}
+          <span className="text-slate-200 font-medium">AWS, Azure, and on-prem data centers</span>{' '}
+          in regulated financial services.
         </p>
         <p>
-          AWS Certified Security &amp; Advanced Networking Specialist who hardened
-          enterprise networks through{' '}
-          <span className="text-slate-200 font-medium">zero-trust architecture</span>,
-          reducing firewall rules by 70% (1,200 &rarr; 400) while cutting policy
-          deployment time 94% (4 hours &rarr; 15 minutes) at{' '}
-          <span className="text-teal-400 font-medium">Capital One</span> and{' '}
-          <span className="text-teal-400 font-medium">Freddie Mac</span>.
+          Consolidated{' '}
+          <span className="text-slate-200 font-medium">1,200+ firewall rules</span> into ~400{' '}
+          <span className="text-slate-200 font-medium">Zero Trust policies</span>, drove SD-WAN
+          migration boosting SLAs from 95% to{' '}
+          <span className="text-slate-200 font-medium">99.5%</span>, and automated{' '}
+          <span className="text-slate-200 font-medium">100+ device deployments</span> via{' '}
+          <span className="text-teal-400 font-medium">Terraform</span> and{' '}
+          <span className="text-teal-400 font-medium">Ansible</span>.
         </p>
         <p>
-          Driven automation engineer: automated compliance scanning, threat remediation,
-          and provisioning workflows via{' '}
-          <span className="text-slate-200 font-medium">Terraform, Ansible, and Python</span>{' '}
-          — reducing manual configuration effort by 60% and enabling reproducible
-          multi-account cloud deployments across 15 AWS accounts.
+          <span className="text-slate-200 font-medium">AWS Security Specialty</span>,{' '}
+          <span className="text-slate-200 font-medium">AWS Advanced Networking</span>,{' '}
+          <span className="text-slate-200 font-medium">Azure AZ-700</span>, and{' '}
+          <span className="text-slate-200 font-medium">CCNA</span> certified.
         </p>
       </div>
     </section>
@@ -351,25 +319,15 @@ function SkillsSection() {
   return (
     <section id="skills" className="mb-6 scroll-mt-16 lg:mb-12 lg:scroll-mt-24">
       <SectionHeader title="Technical Expertise" divider />
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="divide-y divide-slate-800/60">
         {SKILLS.map(({ category, skills }) => (
-          <div
-            key={category}
-            className="rounded-xl border border-slate-800/60 bg-slate-800/20 p-5 hover:border-slate-700/80 hover:bg-slate-800/40 transition-all duration-300"
-          >
-            <h3 className="text-xs font-bold tracking-widest uppercase text-teal-400 mb-4">
+          <div key={category} className="flex gap-4 py-3 first:pt-0 last:pb-0">
+            <span className="w-36 shrink-0 text-xs font-bold tracking-widest uppercase text-teal-400 pt-0.5">
               {category}
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="inline-flex items-center rounded-full bg-slate-700/40 px-3 py-1 text-xs font-medium text-slate-300 ring-1 ring-inset ring-slate-600/40"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
+            </span>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              {skills.join(' · ')}
+            </p>
           </div>
         ))}
       </div>
