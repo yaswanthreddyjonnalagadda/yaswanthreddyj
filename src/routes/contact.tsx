@@ -1,18 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
 import { Send, CheckCircle, Loader2 } from 'lucide-react'
-import emailjs from '@emailjs/browser'
 
 export const Route = createFileRoute('/contact')({
   component: Contact,
 })
 
-const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID as string
-const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string
-const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string
-
 function Contact() {
-  const [form, setForm] = useState({ fullName: '', subject: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -22,20 +17,18 @@ function Contact() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setStatus('sending')
+
     try {
-      await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        {
-          from_name: form.fullName,
-          subject: form.subject,
-          message: form.message,
-          reply_to: '',
-        },
-        PUBLIC_KEY,
-      )
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      if (!res.ok) throw new Error('Failed')
+
       setStatus('sent')
-      setForm({ fullName: '', subject: '', message: '' })
+      setForm({ name: '', email: '', subject: '', message: '' })
     } catch {
       setStatus('error')
     }
@@ -74,17 +67,33 @@ function Contact() {
           <form onSubmit={handleSubmit} className="space-y-6">
 
             <div>
-              <label htmlFor="fullName" className="block text-xs font-semibold tracking-widest uppercase text-slate-400 mb-2">
+              <label htmlFor="name" className="block text-xs font-semibold tracking-widest uppercase text-slate-400 mb-2">
                 Full Name
               </label>
               <input
-                id="fullName"
-                name="fullName"
+                id="name"
+                name="name"
                 type="text"
                 required
-                value={form.fullName}
+                value={form.name}
                 onChange={handleChange}
                 placeholder="John Smith"
+                className="w-full bg-slate-800/50 border border-slate-700/60 rounded-lg px-4 py-3 text-slate-200 placeholder:text-slate-600 text-sm focus:outline-none focus:border-teal-500/60 focus:ring-1 focus:ring-teal-500/30 transition-colors"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-xs font-semibold tracking-widest uppercase text-slate-400 mb-2">
+                Your Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                value={form.email}
+                onChange={handleChange}
+                placeholder="john@example.com"
                 className="w-full bg-slate-800/50 border border-slate-700/60 rounded-lg px-4 py-3 text-slate-200 placeholder:text-slate-600 text-sm focus:outline-none focus:border-teal-500/60 focus:ring-1 focus:ring-teal-500/30 transition-colors"
               />
             </div>
@@ -97,7 +106,6 @@ function Contact() {
                 id="subject"
                 name="subject"
                 type="text"
-                required
                 value={form.subject}
                 onChange={handleChange}
                 placeholder="Networking role at Acme Corp"
@@ -123,7 +131,7 @@ function Contact() {
 
             {status === 'error' && (
               <p className="text-red-400 text-sm">
-                Something went wrong. Please try again or email me directly at{' '}
+                Something went wrong. Email me directly at{' '}
                 <a href="mailto:yaswanthreddyj08@gmail.com" className="underline underline-offset-4 hover:text-red-300">
                   yaswanthreddyj08@gmail.com
                 </a>
