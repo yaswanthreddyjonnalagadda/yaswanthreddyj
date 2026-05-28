@@ -14,10 +14,6 @@ const sortedJobs = [...allJobs].sort(
 const featuredProjects = [...allProjects].slice(0, 3)
 
 const sortedBlogs = [...allBlogs]
-  .filter((b) =>
-    ['vxlan-vs-vlan','sdwan-migration-lessons','aws-transit-gateway-design','azure-expressroute-guide','bgp-failover-engineering','network-automation-at-scale']
-      .includes(b._meta.path)
-  )
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
 const SKILLS = [
