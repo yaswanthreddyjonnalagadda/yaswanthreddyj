@@ -181,27 +181,27 @@ function AboutSection() {
       <SectionHeader title="About" />
       <div className="space-y-4 text-slate-400">
         <p>
-          Senior Network &amp; Security Engineer with{' '}
-          <span className="text-slate-200 font-medium">6+ years</span> architecting,
-          securing, and automating enterprise infrastructure across{' '}
-          <span className="text-slate-200 font-medium">AWS, Azure, and on-prem data centers</span>{' '}
-          in regulated financial services.
+          Senior Network Engineer with{' '}
+          <span className="text-slate-200 font-medium">6+ years</span> designing, deploying, and
+          operating enterprise routing &amp; switching infrastructure —{' '}
+          <span className="text-slate-200 font-medium">BGP, OSPF, MPLS, EVPN/VXLAN spine-leaf, SD-WAN</span>{' '}
+          — across data centers, campus, and WAN environments in regulated financial services.
         </p>
         <p>
-          Consolidated{' '}
-          <span className="text-slate-200 font-medium">1,200+ firewall rules</span> into ~400{' '}
-          <span className="text-slate-200 font-medium">Zero Trust policies</span>, drove SD-WAN
-          migration boosting SLAs from 95% to{' '}
-          <span className="text-slate-200 font-medium">99.5%</span>, and automated{' '}
-          <span className="text-slate-200 font-medium">100+ device deployments</span> via{' '}
-          <span className="text-teal-400 font-medium">Terraform</span> and{' '}
-          <span className="text-teal-400 font-medium">Ansible</span>.
+          I bring deep networking fundamentals paired with cloud security and automation expertise —
+          architecting hybrid connectivity across{' '}
+          <span className="text-slate-200 font-medium">AWS and Azure</span>, enforcing{' '}
+          <span className="text-slate-200 font-medium">Zero Trust</span> firewall policies, and
+          building{' '}
+          <span className="text-teal-400 font-medium">IaC pipelines</span> that keep infrastructure
+          consistent and auditable at scale.
         </p>
         <p>
           <span className="text-slate-200 font-medium">AWS Security Specialty</span>,{' '}
           <span className="text-slate-200 font-medium">AWS Advanced Networking</span>,{' '}
           <span className="text-slate-200 font-medium">Azure AZ-700</span>, and{' '}
-          <span className="text-slate-200 font-medium">CCNA</span> certified.
+          <span className="text-slate-200 font-medium">CCNA</span> certified. Currently open to
+          full-time opportunities.
         </p>
       </div>
     </section>
