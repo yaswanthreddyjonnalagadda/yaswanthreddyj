@@ -160,7 +160,7 @@ function Sidebar({ activeSection }: { activeSection: string }) {
 
         <div className="mt-7 hidden lg:flex lg:flex-col lg:items-start lg:gap-2">
           <a href="/resume" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-teal-500/50 text-teal-400 text-sm font-medium hover:bg-teal-500/10 hover:border-teal-400 transition-all duration-200 whitespace-nowrap">
-            View or Download Résumé
+            View or Download Resume
           </a>
           <a href="/contact" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-teal-500/50 text-teal-400 text-sm font-medium hover:bg-teal-500/10 hover:border-teal-400 transition-all duration-200 whitespace-nowrap">
             Contact Me
