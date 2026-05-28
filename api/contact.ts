@@ -15,7 +15,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: 'Portfolio Contact <contact@yaswanth-reddy-j-networking.com>',
       to: ['yaswanthreddyj08@gmail.com'],
       replyTo: email,
@@ -30,6 +30,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       `,
     })
 
+    console.log('Resend result:', JSON.stringify(result))
     return res.status(200).json({ success: true })
   } catch (error) {
     console.error('Resend error:', error)
