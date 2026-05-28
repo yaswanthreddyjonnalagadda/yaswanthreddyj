@@ -14,26 +14,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: 'Missing required fields' })
   }
 
-  try {
-    const result = await resend.emails.send({
-      from: 'Portfolio Contact <contact@yaswanth-reddy-j-networking.com>',
-      to: ['yaswanthreddyj08@gmail.com'],
-      replyTo: email,
-      subject: subject || `New message from ${name}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <hr />
-        <p style="white-space: pre-wrap;">${message}</p>
-      `,
-    })
+  const { data, error } = await resend.emails.send({
+    from: 'Portfolio Contact <contact@yaswanth-reddy-j-networking.com>',
+    to: ['yaswanthreddyj08@gmail.com'],
+    replyTo: email,
+    subject: subject || `New message from ${name}`,
+    html: `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Subject:</strong> ${subject}</p>
+      <hr />
+      <p style="white-space: pre-wrap;">${message}</p>
+    `,
+  })
 
-    console.log('Resend result:', JSON.stringify(result))
-    return res.status(200).json({ success: true })
-  } catch (error) {
-    console.error('Resend error:', error)
-    return res.status(500).json({ error: 'Failed to send message' })
+  if (error) {
+    console.error('Resend error:', JSON.stringify(error))
+    return res.status(500).json({ error: error.message })
   }
+
+  console.log('Resend success:', JSON.stringify(data))
+  return res.status(200).json({ success: true })
 }
