@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { allJobs, allEducations } from 'content-collections'
 import { ArrowLeft, Download, FileText } from 'lucide-react'
+import { useState } from 'react'
+import { PhotoModal } from '../components/PhotoModal'
 
 export const Route = createFileRoute('/resume')({
   component: Resume,
@@ -42,6 +44,7 @@ function SectionDivider({ title }: { title: string }) {
 }
 
 function Resume() {
+  const [photoOpen, setPhotoOpen] = useState(false)
   return (
     <div className="min-h-screen bg-[#0a192f]">
       {/* Sticky top bar */}
@@ -104,11 +107,24 @@ function Resume() {
               </a>
             </div>
           </div>
-          <img
-            src="/headshot-on-white.jpg"
-            alt="Yaswanth Reddy Jonnalagadda"
-            className="w-24 h-24 rounded-full object-cover object-top ring-2 ring-slate-700/60 shrink-0"
-          />
+          <button
+            onClick={() => setPhotoOpen(true)}
+            className="shrink-0 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+            aria-label="View full photo"
+          >
+            <img
+              src="/headshot-on-white.jpg"
+              alt="Yaswanth Reddy Jonnalagadda"
+              className="w-24 h-24 rounded-full object-cover object-top ring-2 ring-slate-700/60 cursor-pointer hover:ring-teal-400/60 transition-all duration-200"
+            />
+          </button>
+          {photoOpen && (
+            <PhotoModal
+              src="/headshot-on-white.jpg"
+              alt="Yaswanth Reddy Jonnalagadda"
+              onClose={() => setPhotoOpen(false)}
+            />
+          )}
         </div>
 
         {/* Summary */}

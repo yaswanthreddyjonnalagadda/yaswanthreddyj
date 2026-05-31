@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { allJobs, allProjects, allBlogs } from 'content-collections'
 import { ArrowUpRight, Github, Linkedin, ExternalLink } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { PhotoModal } from '../components/PhotoModal'
 
 export const Route = createFileRoute('/')({
   component: Portfolio,
@@ -102,6 +103,7 @@ function MobileSectionHeader({ title }: { title: string }) {
 }
 
 function Sidebar({ activeSection }: { activeSection: string }) {
+  const [photoOpen, setPhotoOpen] = useState(false)
   return (
     <header className="lg:sticky lg:top-0 lg:h-screen lg:w-[48%] lg:overflow-hidden lg:pt-10 lg:pb-10">
       <div>
@@ -116,11 +118,24 @@ function Sidebar({ activeSection }: { activeSection: string }) {
         </p>
 
         <div className="mt-5 flex items-center gap-5">
-          <img
-            src="/headshot-on-white.jpg"
-            alt="Yaswanth Reddy Jonnalagadda"
-            className="w-16 h-16 rounded-full object-cover object-top ring-2 ring-slate-700/60 shrink-0"
-          />
+          <button
+            onClick={() => setPhotoOpen(true)}
+            className="shrink-0 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+            aria-label="View full photo"
+          >
+            <img
+              src="/headshot-on-white.jpg"
+              alt="Yaswanth Reddy Jonnalagadda"
+              className="w-16 h-16 rounded-full object-cover object-top ring-2 ring-slate-700/60 cursor-pointer hover:ring-teal-400/60 transition-all duration-200"
+            />
+          </button>
+          {photoOpen && (
+            <PhotoModal
+              src="/headshot-on-white.jpg"
+              alt="Yaswanth Reddy Jonnalagadda"
+              onClose={() => setPhotoOpen(false)}
+            />
+          )}
           <ul className="flex items-center gap-4">
             <li>
               <a href="https://github.com/yaswanthreddyjonnalagadda" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="block text-slate-400 hover:text-slate-200 transition-colors">
