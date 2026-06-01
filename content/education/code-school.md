@@ -1,6 +1,6 @@
 ---
-school: Eastern Illinois University
-summary: M.S. in Computer Technology
+school: Eastern Illinois University, Charleston, IL
+summary: Master of Science in Computer Technology
 startDate: "2021"
 endDate: "2022"
 tags:

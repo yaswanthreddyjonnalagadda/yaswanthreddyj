@@ -19,7 +19,7 @@ tags:
   ]
 ---
 
-- Scaled enterprise LAN/WAN infrastructure across 15 branches supporting 2,000+ users — maintained 99.8% uptime through SolarWinds monitoring and automated failover configuration.
-- Deployed hardened Fortinet FortiGate firewalls and IPsec site-to-site VPNs across 10 offices — secured 100% of inter-site traffic and reduced VPN incidents 45%.
-- Engineered multi-homed BGP/OSPF routing across dual ISP carriers — achieved sub-second failover convergence and eliminated 8+ hours quarterly downtime from single-ISP dependencies.
-- Reduced broadcast domains by 60% through VLAN segmentation and IEEE 802.1X NAC policies via Forescout — eliminated lateral movement attack vectors through network microsegmentation.
+- Scaled enterprise LAN/WAN infrastructure across 15 branch sites and 2,000+ users, achieving 99.8% uptime through proactive monitoring, automated failover, and capacity planning.
+- Deployed Fortinet FortiGate firewalls and IPsec site-to-site VPNs across 10 branch offices; engineered multi-homed BGP/OSPF routing across dual ISPs achieving sub-second failover convergence.
+- Implemented VLAN segmentation, DMZ zones, and 802.1X NAC policies via Forescout, reducing broadcast domains by 60% and eliminating lateral movement vectors through microsegmentation.
+- Developed Python and Bash automation scripts for configuration backups, device inventory, and validation tasks across 100+ devices, reducing manual audit preparation time by 70%.

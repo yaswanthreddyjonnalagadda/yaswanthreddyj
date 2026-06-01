@@ -1,7 +1,7 @@
 ---
-jobTitle: Network & Security Engineer
-company: Capital One (Contract)
-location: Remote
+jobTitle: Network & Security Engineer (Contract)
+company: Capital One
+location: McLean, VA
 startDate: "2025"
 summary: "Architect EVPN-VXLAN spine-leaf fabric supporting 99.99% uptime for 200+ financial applications. Drive IaC automation across 100+ devices via Terraform/Ansible with CI/CD, and manage multi-vendor NGFW estate enforcing Zero Trust across 3 data centers and 2 cloud regions."
 tags:
@@ -21,9 +21,11 @@ tags:
   ]
 ---
 
-- Architected EVPN-VXLAN spine-leaf fabric across Cisco Nexus 9000 and Arista switches supporting 99.99% uptime for 200+ financial applications across 3 data centers.
-- Drove IaC automation across 100+ network devices via Terraform and Ansible with CI/CD pipelines — reduced provisioning time from days to hours and enforced policy-as-code compliance.
-- Managed multi-vendor NGFW estate (Palo Alto, Fortinet) enforcing Zero Trust microsegmentation across 3 data centers and 2 cloud regions — consolidated 1,200+ rules into ~400 optimized policies.
-- Engineered AWS GuardDuty and Security Hub threat detection across 15 AWS accounts — automated remediation via Lambda, reducing false positives 70% and MTTR by 40%.
-- Deployed F5 BIG-IP LTM/GTM for global load balancing across hybrid cloud — achieved sub-second failover and maintained SLA compliance for critical financial workloads.
-- Built CI/CD infrastructure validation pipeline with GitHub Actions, Terraform, and Checkov — blocked 95% of non-compliant deployments pre-merge.
+- Architect and operate EVPN-VXLAN spine-leaf data center fabric across Cisco Nexus 9000 and Arista switches, supporting 99.99% uptime for 200+ business-critical financial applications through BGP, OSPF, VRF, PIM multicast, and vPC redundancy.
+- Manage multi-vendor NGFW estate (Palo Alto Panorama, Fortinet FortiManager, Cisco Firepower FTD/FMC), enforcing Zero Trust and microsegmentation policies across 3 data centers and 2 cloud regions, reducing lateral threat exposure.
+- Engineer hybrid cloud network connectivity across AWS (VPC, Transit Gateway, Direct Connect, Security Hub, GuardDuty) and Azure (VNet, ExpressRoute, Azure Firewall, Landing Zone), ensuring sub-100ms latency for cross-cloud workloads.
+- Drive network automation and IaC initiatives using Python (Netmiko, NAPALM), Ansible, and Terraform with CI/CD pipelines, delivering repeatable, version-controlled deployments across 100+ network devices and eliminating manual configuration drift.
+- Administer F5 BIG-IP (LTM, GSLB) load balancers serving 50+ VIPs for application delivery, health monitoring, and traffic management, achieving 99.95% application availability.
+- Enforce endpoint compliance via Forescout/Cisco ISE NAC with 802.1X, RADIUS, and MAB across 3 network segments (corporate, BYOD, guest), securing 5,000+ endpoints.
+- Serve as senior escalation point for complex hybrid cloud and on-prem network incidents; lead Root Cause Analysis and DR planning, achieving zero change-related outages across quarterly maintenance windows.
+- Operate network observability stack (SolarWinds, Splunk, Wireshark, NetFlow, streaming telemetry) reducing monitoring noise by ~30% and false alerts by ~25% through tuned correlation rules.

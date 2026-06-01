@@ -1,6 +1,6 @@
 ---
-school: JNTU Hyderabad
-summary: B.Tech in Electrical & Electronics Engineering
+school: Jawaharlal Nehru Technological University (JNTU), Hyderabad, India
+summary: Bachelor of Technology in Electrical and Electronics Engineering
 startDate: "2015"
 endDate: "2019"
 tags:

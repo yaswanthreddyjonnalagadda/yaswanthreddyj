@@ -1,6 +1,6 @@
 ---
-jobTitle: Network Engineer
-company: Freddie Mac (Contract)
+jobTitle: Network Engineer (Contract)
+company: Freddie Mac
 location: McLean, VA
 startDate: "2023"
 endDate: "2025"
@@ -20,9 +20,10 @@ tags:
   ]
 ---
 
-- Consolidated 1,200+ legacy firewall rules into ~400 Zero Trust policies across Palo Alto PA-5200 and Cisco Firepower — achieved 3x faster policy deployments and reduced unauthorized access attempts 55%.
-- Led SD-WAN migration (Cisco Viptela) across 25+ branch sites — boosted application SLAs from 95% to 99.5%, reduced WAN costs 35% ($280K annually), and eliminated single-ISP downtime risk.
-- Automated provisioning of 50+ Cisco switch stacks via Ansible/Terraform — reduced new branch deployment time from 3 weeks to 2 days (93% reduction).
-- Integrated Infoblox DDI for centralized DNS/DHCP/IPAM management — reduced IP conflicts 90% and improved network visibility across 15,000+ endpoints.
-- Built Splunk dashboards and automated alerting for SOX/GLBA compliance telemetry — accelerated threat detection 60% and improved MTTR by 35%.
-- Established Terraform-based IaC for AWS VPC and Azure VNet multi-account deployments — reduced cloud provisioning errors 80% across 15 accounts.
+- Redesigned enterprise firewall architecture across Palo Alto PA-5200, Fortinet FortiGate, and Cisco Firepower, consolidating 1,200+ legacy rules into ~400 optimized Zero Trust policies—accelerating change deployment velocity by 3x.
+- Spearheaded Cisco SD-WAN (Viptela) migration across 25+ branch sites, improving application SLAs from 95% to 99.5% with sub-second failover, eliminating single-ISP downtime risk.
+- Established Terraform-based Infrastructure-as-Code for AWS VPC and Azure VNet multi-account deployments; automated Cisco DNA Center/SDA provisioning via Ansible playbooks across 50+ switch stacks, cutting provisioning time significantly.
+- Configured Cisco Catalyst, Nexus, and Meraki switches alongside Juniper EX platforms; managed BGP, OSPF, STP, MLAG/vPC, and VLAN segmentation across 4 co-location data centers maintaining 99.9% uptime.
+- Designed DMZ and multi-layer network zones, IPsec site-to-site VPNs, GRE tunnels, and DMVPN; performed packet-level troubleshooting using Wireshark, SolarWinds, Splunk, and PRTG, resolving critical incidents within 30-minute SLA windows.
+- Integrated Infoblox DDI for automated DNS, DHCP, and IPAM provisioning across the enterprise, reducing IP conflict incidents by 90% and manual allocation tasks by 80%.
+- Maintained audit-ready network documentation, baseline configurations, and ITIL change management procedures in a regulated financial services environment supporting SOX and GLBA compliance.
