@@ -17,19 +17,21 @@ const sortedEducation = [...allEducations].sort(
 )
 
 const CERTIFICATIONS = [
-  { name: 'AWS Certified Advanced Networking Specialty', code: 'ANS-C01', issuer: 'Amazon Web Services' },
-  { name: 'AWS Certified Security Specialty', code: 'SCS-C03', issuer: 'Amazon Web Services' },
-  { name: 'Microsoft Certified Azure Network Engineer Associate', code: 'AZ-700', issuer: 'Microsoft' },
+  { name: 'AWS Certified Security – Specialty', code: 'SCS-C03', issuer: 'Amazon Web Services' },
+  { name: 'AWS Certified Advanced Networking – Specialty', code: 'ANS-C01', issuer: 'Amazon Web Services' },
+  { name: 'Microsoft Azure Network Engineer Associate', code: 'AZ-700', issuer: 'Microsoft' },
   { name: 'Cisco Certified Network Associate', code: 'CCNA', issuer: 'Cisco' },
 ]
 
 const SKILLS = [
-  { category: 'Cloud Platforms', items: ['AWS VPC', 'Transit Gateway', 'Direct Connect', 'GuardDuty', 'Security Hub', 'Azure VNet', 'ExpressRoute', 'VPN Gateway'] },
-  { category: 'Network Core', items: ['BGP', 'OSPF', 'EIGRP', 'VRF', 'VXLAN', 'EVPN', 'STP', 'EtherChannel', 'Cisco Nexus', 'Arista', 'Juniper Junos'] },
-  { category: 'Security & Firewalls', items: ['Zero Trust Architecture', 'Palo Alto Panorama', 'Fortinet FortiGate', 'Cisco Firepower', 'IPsec VPN', 'AWS IAM', 'Network Segmentation'] },
-  { category: 'Automation & IaC', items: ['Terraform', 'Ansible', 'Python', 'Netmiko', 'NAPALM', 'Bash', 'REST API', 'GitHub Actions', 'Jenkins', 'Policy-as-Code'] },
-  { category: 'WAN & SD-WAN', items: ['Cisco Viptela', 'Fortinet SD-WAN', 'Site-to-Site VPN', 'Failover Architecture', 'Multi-path Optimization'] },
-  { category: 'Observability', items: ['Wireshark', 'SolarWinds', 'Prometheus', 'Grafana', 'Splunk', 'Real-time Telemetry'] },
+  { category: 'Routing & Switching', items: ['BGP', 'OSPF', 'EIGRP', 'IS-IS', 'MPLS', 'VRF', 'EVPN/VXLAN Spine-Leaf', 'PIM Multicast', 'HSRP/VRRP/GLBP', 'STP/RSTP/MSTP', 'vPC/MLAG', 'EtherChannel/LACP', 'DCI'] },
+  { category: 'Platforms', items: ['Cisco Catalyst 9K/3850', 'Nexus 9K/7K/5K', 'ISR/ASR', 'Meraki', 'Viptela SD-WAN', 'ACI', 'Catalyst Center', 'Juniper MX/EX/SRX/QFX', 'Arista EOS', 'HPE Aruba'] },
+  { category: 'Security & NGFW', items: ['Palo Alto PA-3200/5200', 'Panorama', 'Prisma Access', 'Fortinet FortiGate/FortiManager/FortiAnalyzer', 'Cisco ASA/Firepower FTD/FMC', 'Check Point', 'ZTNA', 'SASE', 'Microsegmentation', 'IDS/IPS', 'ACLs', 'SSL/TLS Decryption', 'URL Filtering', 'WildFire'] },
+  { category: 'Identity & VPN', items: ['Cisco ISE', 'Forescout', 'Aruba ClearPass', '802.1X', 'RADIUS', 'TACACS+', 'NAC', 'MAB', 'IPsec VPN (IKEv1/v2)', 'GRE', 'DMVPN', 'SSL VPN', 'AnyConnect', 'GlobalProtect', 'Zscaler ZIA/ZPA'] },
+  { category: 'Load Balancing', items: ['F5 BIG-IP LTM/GTM/ASM/APM', 'iRules', 'GSLB', 'AVI/NSX ALB', 'Citrix NetScaler', 'AWS ALB/NLB', 'Azure Application Gateway'] },
+  { category: 'Cloud Networking', items: ['AWS VPC', 'Transit Gateway', 'Direct Connect', 'PrivateLink', 'Security Hub', 'GuardDuty', 'WAF', 'Network Firewall', 'IAM', 'Azure VNet', 'ExpressRoute', 'Azure Firewall', 'Virtual WAN', 'Landing Zone', 'Hub-and-Spoke', 'Private Endpoints', 'GCP VPC', 'Cloud Interconnect', 'Cloud Armor'] },
+  { category: 'Automation & IaC', items: ['Python (Netmiko, NAPALM, Nornir, REST API)', 'Ansible (Playbooks/Tower/AWX)', 'Terraform (HCL, Modules, State)', 'PowerShell', 'Bash', 'GitHub Actions', 'Jenkins', 'GitLab CI', 'Azure DevOps', 'NetDevOps', 'Policy-as-Code (Checkov, OPA)'] },
+  { category: 'Monitoring & Ops', items: ['SolarWinds NPM/NCM', 'Splunk', 'PRTG', 'Wireshark', 'Prometheus', 'Grafana', 'Datadog', 'NetFlow/sFlow/IPFIX', 'Streaming Telemetry (gNMI/YANG)', 'Infoblox DDI', 'IPAM', 'ITIL', 'ServiceNow', 'Jira', 'DR Planning'] },
 ]
 
 function SectionDivider({ title }: { title: string }) {
@@ -88,11 +90,13 @@ function Resume() {
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-100 mb-2">
               Yaswanth Reddy Jonnalagadda
             </h1>
-            <p className="text-slate-400 text-lg mb-5">
-              Senior Network &amp; Security Engineer
+            <p className="text-slate-400 text-base mb-5">
+              Senior Network &amp; Security Engineer · Cloud Network Engineer · Network Automation Engineer
             </p>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500">
               <span>Fairfax, VA</span>
+              <span className="opacity-30">·</span>
+              <span>(757) 632-6895</span>
               <span className="opacity-30">·</span>
               <a href="mailto:yaswanthreddyj08@gmail.com" className="hover:text-teal-400 transition-colors">
                 yaswanthreddyj08@gmail.com
@@ -131,11 +135,12 @@ function Resume() {
         <section className="mb-12">
           <SectionDivider title="Summary" />
           <p className="text-slate-400 leading-relaxed text-[15px]">
-            Cloud-first Senior Network Engineer with 6+ years architecting hybrid cloud infrastructure
-            across AWS, Azure, and on-premises environments. Delivered $280K annual savings through
-            SD-WAN migration at Freddie Mac, reduced firewall rules 67% via zero-trust policy
-            redesign at Capital One, and automated compliance workflows across 500+ network devices
-            using Terraform, Ansible, and Python.
+            Senior Network &amp; Security Engineer with 6+ years of experience architecting, securing, and automating enterprise
+            network infrastructure across data center, campus, WAN, and hybrid cloud environments in regulated financial services.
+            Proven track record of delivering measurable impact—consolidated 1,200+ firewall rules into ~400 Zero Trust policies,
+            drove SD-WAN migration across 25+ branches boosting SLAs from 95% to 99.5%, and automated 50+ switch deployments
+            via Ansible/Terraform cutting provisioning time significantly. Holds AWS Security Specialty, AWS Advanced Networking,
+            Azure Network Engineer (AZ-700), and CCNA certifications.
           </p>
         </section>
 
